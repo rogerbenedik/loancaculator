@@ -26,9 +26,36 @@ if(isFinite(monthly)){
     totalInterest.value = ((monthly * calculatedPayments)- principal).toFixed(2);
 
 }else{
-    console.log('please check your number')
+    showError('Please check your number')
 }
 
 
     e.preventDefault();
+}
+//show error
+function showError(error){
+//create a div
+const errorDiv = document.createElement('div');
+//get element
+const card = document.querySelector('.card');
+const heading = document.querySelector('.heading')
+
+// add class
+errorDiv.className = 'alert alert-danger';
+// create text node and append to div
+errorDiv.appendChild(document.createTextNode(error));
+
+// inserty error above heading
+card.insertBefore(errorDiv, heading);
+
+//clear error after 3sec
+
+setTimeout(clearError, 3000);
+
+
+}
+
+//clear error
+function clearError(){
+    document.querySelector('.alert').remove();
 }
